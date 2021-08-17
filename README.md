@@ -22,11 +22,11 @@ Módulo contendo código para execução da aplicação principal do projeto rel
 
 ## Ambiente de Desenvolvimento
 
-O projeto TestRec server utiliza os seguintes componentes:
+O projeto utiliza os seguintes componentes:
 
 - Spring boot 2.5.3
 
-O projeto Catalog utiliza o [apache maven](https://maven.apache.org/) como gerenciador de pacotes. Assim, para gerar o pacote de desenvolvimento é necessário executar o seguinte comando:
+O projeto utiliza o [apache maven](https://maven.apache.org/) como gerenciador de pacotes. Assim, para gerar o pacote de desenvolvimento é necessário executar o seguinte comando:
 
 ```
 mvn clean package
@@ -34,13 +34,13 @@ mvn clean package
 O comando acima gera o executável do projeto no caminho **nasarobot/nasarobot-api/target/nasarobot-api.jar**.
 
 ## Execução do componente
-O módulo Catalog server possui três perfis de execução:
+O módulo nasarobot-api  possui três perfis de execução:
 
 - dev: Para execução em ambiente de desenvolvimento.
 - test: Para execução em ambiente de testes.
 - prod: Para execução em ambiente de produção.
 
-Basicamente o que difere de um perfil de execução para outro é a conexão com banco de dados. Para selecionar o perfil durante a execução do sistema, o comando abaixo deve ser executado:
+Para selecionar o perfil durante a execução do sistema, o comando abaixo deve ser executado:
 ```
 java -jar <<arquivojar> -Dspring.profiles.active=<<perfil>>
 ```
