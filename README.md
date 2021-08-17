@@ -72,7 +72,7 @@ http://localhost:8080/swagger-ui/#/
 
 ```
 
-Para para aplicação:
+Para parar aplicação:
 
 ```
 docker-compose down

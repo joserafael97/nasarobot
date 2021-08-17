@@ -1,6 +1,6 @@
 package br.com.jrafael.nasarobot.model;
 
-import br.com.jrafael.infrastructure.exception.BusinessException;
+import br.com.jrafael.infrastructure.exception.BusinessValidationException;
 import br.com.jrafael.nasarobot.model.enums.Direction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ public class RobotTest {
 
     @Test
     public void sendCommandWithInvalidsLimitsAreaMMMMMMRMMMMMMTest() throws Exception {
-        assertThrows(BusinessException.class, () -> {
+        assertThrows(BusinessValidationException.class, () -> {
             this.robot.sendCommandsByString("MMMMMMRMMMMMM");
         });
     }
@@ -66,7 +66,7 @@ public class RobotTest {
 
     @Test
     public void sendCommandInvalidCommandMMMMMMMMMMMMMMTest() throws Exception {
-        assertThrows(BusinessException.class, () -> {
+        assertThrows(BusinessValidationException.class, () -> {
             this.robot.sendCommandsByString("MMMMMMMMMMMMMM");
         });
     }
