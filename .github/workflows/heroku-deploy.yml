@@ -10,7 +10,7 @@ on:
     branches:
       - heroku-deploy
 jobs:
-  deploy-catalog:
+  deploy-nasarobot:
     runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
@@ -22,20 +22,20 @@ jobs:
     - name: Build with Maven common
       working-directory: ./common/
       run: mvn -B package  -Dmaven.test.skip=true --file pom.xml
-    - name: Build with Maven catalog
-      working-directory: ./catalog/
+    - name: Build with Maven nasarobot
+      working-directory: ./nasarobot/
       run: mvn -B package  -Dmaven.test.skip=true --file pom.xml
     - name: Heroku Container Registry login
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:login
     - name: Build and push
-      working-directory: ./catalog/catalog-api/
+      working-directory: ./nasarobot/nasarobot-api/
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web 
     - name: Release
-      working-directory: ./catalog/catalog-api/
+      working-directory: ./nasarobot/nasarobot-api/
       env:
        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web 
