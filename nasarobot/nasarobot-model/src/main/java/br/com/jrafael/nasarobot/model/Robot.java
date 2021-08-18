@@ -4,6 +4,7 @@ import br.com.jrafael.infrastructure.exception.BusinessValidationException;
 import br.com.jrafael.nasarobot.model.commands.Command;
 import br.com.jrafael.nasarobot.model.enums.Direction;
 import br.com.jrafael.nasarobot.model.util.CommandUtil;
+import br.com.jrafael.nasarobot.model.util.validation.LimitCoordinateValidation;
 
 import java.util.List;
 
@@ -27,11 +28,9 @@ public class Robot {
         for (Command command : commands) {
             command.execute(this);
         }
-        if (this.getCoordinateX() > 5 || this.getCoordinateY() > 5) {
-            throw new BusinessValidationException("Invalid coordinates.");
-        } else {
-           return this;
-        }
+        LimitCoordinateValidation.validate(getCoordinateX(), getCoordinateY());
+        return this;
+
     }
 
     //gets and setters
