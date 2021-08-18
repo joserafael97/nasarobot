@@ -103,4 +103,40 @@ public class RobotTest {
         assertEquals(Direction.S, this.robot.getDirection());
     }
 
+    @Test
+    public void sendCommandLimitsLowerInvalidCommandRRMMMMMMMMMMMMMMRMMMMMMMMTest() throws Exception {
+        assertThrows(BusinessValidationException.class, () -> {
+            this.robot.sendCommandsByString("RRMMMMMMMMMMMMMMRMMMMMMMM");
+        });
+    }
+
+    @Test
+    public void sendCommandLimitsUpperInvalidCommandMMMMMMMMMMMMMMRMMMMMMMMTest() throws Exception {
+        assertThrows(BusinessValidationException.class, () -> {
+            this.robot.sendCommandsByString("MMMMMMMMMMMMMMRMMMMMMMM");
+        });
+    }
+
+    @Test
+    public void sendCommandLimitsUpperMaxCommandRRMMMMMMMRMMMMMMMTest() throws Exception {
+        this.robot.sendCommandsByString("RRMMMMMRMMMMM");
+        assertEquals(-5, this.robot.getCoordinateX());
+        assertEquals(-5, this.robot.getCoordinateY());
+        assertEquals(Direction.W, this.robot.getDirection());
+    }
+
+    @Test
+    public void sendCommandLimitsUpperInvalidCommandMMMMMMRMMMMMMTest() throws Exception {
+        assertThrows(BusinessValidationException.class, () -> {
+            this.robot.sendCommandsByString("MMMMMMRMMMMMM");
+        });
+    }
+
+    @Test
+    public void sendCommandLimitsUpperMaxCommandMMMMMRMMMMMTest() throws Exception {
+        this.robot.sendCommandsByString("MMMMMRMMMMM");
+        assertEquals(5, this.robot.getCoordinateX());
+        assertEquals(5, this.robot.getCoordinateY());
+        assertEquals(Direction.E, this.robot.getDirection());
+    }
 }
